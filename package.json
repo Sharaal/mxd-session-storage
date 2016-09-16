@@ -18,5 +18,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/dragonprojects/mxd-session-storage.git"
+  },
+  "dependencies": {
+    "redis": "^2.6.2"
   }
 }
