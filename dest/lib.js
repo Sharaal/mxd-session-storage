@@ -5,9 +5,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 const redis = require('redis');
 
 module.exports = _ref => {
+  let client = _ref.client;
   let url = _ref.url;
 
-  const client = redis.createClient(url);
+  client = client || redis.createClient(url);
   return {
     set: (() => {
       var _ref2 = _asyncToGenerator(function* (key, value) {

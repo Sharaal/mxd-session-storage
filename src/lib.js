@@ -1,7 +1,7 @@
 const redis = require('redis');
 
-module.exports = ({ url }) => {
-  const client = redis.createClient(url);
+module.exports = ({ client, url }) => {
+  client = client || redis.createClient(url);
   return {
     set: async (key, value) => {
       return new Promise(resolve => {
