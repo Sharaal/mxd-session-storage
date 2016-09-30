@@ -9,11 +9,12 @@ module.exports = _ref => {
   let url = _ref.url;
 
   client = client || redis.createClient(url);
+  const prefix = 'SESSION:';
   return {
     set: (() => {
       var _ref2 = _asyncToGenerator(function* (key, value) {
         return new Promise(function (resolve) {
-          client.set(key, JSON.stringify(value), function () {
+          client.set(prefix + key, JSON.stringify(value), function () {
             resolve();
           });
         });
@@ -26,7 +27,7 @@ module.exports = _ref => {
     get: (() => {
       var _ref3 = _asyncToGenerator(function* (key) {
         return new Promise(function (resolve) {
-          client.get(key, function (err, value) {
+          client.get(prefix + key, function (err, value) {
             try {
               resolve(JSON.parse(value));
             } catch (e) {
@@ -43,7 +44,7 @@ module.exports = _ref => {
     delete: (() => {
       var _ref4 = _asyncToGenerator(function* (key) {
         return new Promise(function (resolve) {
-          client.del(key, function () {
+          client.del(prefix + key, function () {
             resolve();
           });
         });
